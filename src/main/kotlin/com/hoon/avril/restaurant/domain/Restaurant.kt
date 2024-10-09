@@ -1,14 +1,13 @@
 package com.hoon.avril.restaurant.domain
 
 import com.hoon.avril.common.domain.BaseEntity
-import jakarta.persistence.Column
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import jakarta.persistence.*
 
 /**
  * Aggregate Root
  * */
+
+@Entity
 class Restaurant (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

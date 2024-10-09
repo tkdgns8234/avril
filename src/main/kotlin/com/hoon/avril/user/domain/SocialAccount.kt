@@ -3,6 +3,7 @@ package com.hoon.avril.user.domain
 import com.hoon.avril.common.domain.BaseEntity
 import jakarta.persistence.*
 
+@Entity
 class SocialAccount (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

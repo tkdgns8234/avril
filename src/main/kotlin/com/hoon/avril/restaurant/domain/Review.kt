@@ -2,12 +2,9 @@ package com.hoon.avril.restaurant.domain
 
 import com.hoon.avril.common.domain.BaseEntity
 import com.hoon.avril.user.domain.UserId
-import jakarta.persistence.Column
-import jakarta.persistence.Embedded
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import jakarta.persistence.*
 
+@Entity
 class Review  (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
