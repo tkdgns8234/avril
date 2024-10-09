@@ -1,0 +1,14 @@
+srpgin:
+  application:
+    name: avril
+  profiles:
+    active: h2
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+
+server:
+  port: 8080
