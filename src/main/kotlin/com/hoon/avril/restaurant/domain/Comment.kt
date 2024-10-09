@@ -1,7 +1,7 @@
 package com.hoon.avril.restaurant.domain
 
 import com.hoon.avril.common.domain.BaseEntity
-import com.hoon.avril.user.domain.UserId
+import com.hoon.avril.user.domain.User
 import jakarta.persistence.*
 
 @Entity
@@ -10,15 +10,18 @@ class Comment (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
-    @Embedded
-    var userId: UserId,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    val user: User,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "review_id", nullable = false)
+    val review: Review,
+
+    var comment: String?,
 
     @Embedded
-    var reviewId: ReviewId,
-
-    var comment: String,
-
-    var parentId: CommentId,
+    var parentId: CommentId?,
 ): BaseEntity()
 
 data class CommentId(val id: Long)

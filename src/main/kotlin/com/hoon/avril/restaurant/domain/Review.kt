@@ -1,7 +1,7 @@
 package com.hoon.avril.restaurant.domain
 
 import com.hoon.avril.common.domain.BaseEntity
-import com.hoon.avril.user.domain.UserId
+import com.hoon.avril.user.domain.User
 import jakarta.persistence.*
 
 @Entity
@@ -10,11 +10,13 @@ class Review  (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
-    @Embedded
-    var restaurantId: RestaurantId,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    var restaurant: Restaurant,
 
-    @Embedded
-    var userId: UserId,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    val user: User,
 
     @Column(nullable = false)
     var score: Double,
@@ -22,10 +24,8 @@ class Review  (
     @Column(nullable = false)
     var title: String,
 
-    var content: String,
+    var content: String?,
 
-    var image: ByteArray,
+    var image: ByteArray?,
 
 ): BaseEntity()
-
-data class ReviewId(val id: Long)

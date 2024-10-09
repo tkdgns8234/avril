@@ -1,9 +1,8 @@
 package com.hoon.avril.favorite.domain
 
-import com.hoon.avril.common.domain.BaseEntity
 import com.hoon.avril.common.domain.BaseEntityAggregateRoot
-import com.hoon.avril.restaurant.domain.RestaurantId
-import com.hoon.avril.user.domain.UserId
+import com.hoon.avril.restaurant.domain.Restaurant
+import com.hoon.avril.user.domain.User
 import jakarta.persistence.*
 
 
@@ -17,11 +16,13 @@ class Favorite (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
-    @Embedded
-    var userId: UserId,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    val user: User,
 
-    @Embedded
-    var restaurantId: RestaurantId,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    val restaurant: Restaurant,
 
     val isDeleted: Boolean = false
 ): BaseEntityAggregateRoot<Favorite>()

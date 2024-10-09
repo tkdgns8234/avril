@@ -9,8 +9,9 @@ class Menu (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
-    @Embedded
-    var restaurantId: RestaurantId,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    var restaurant: Restaurant,
 
     @Column(nullable = false)
     var name: String,
@@ -18,6 +19,6 @@ class Menu (
     @Column(nullable = false)
     var price: Double,
 
-    var image: ByteArray,
+    var image: ByteArray?,
 
 ): BaseEntity()
