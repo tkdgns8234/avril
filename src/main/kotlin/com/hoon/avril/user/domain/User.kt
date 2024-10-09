@@ -1,6 +1,6 @@
 package com.hoon.avril.user.domain
 
-import com.hoon.avril.common.domain.BaseEntity
+import com.hoon.avril.common.domain.BaseEntityAggregateRoot
 import jakarta.persistence.*
 
 /**
@@ -14,17 +14,19 @@ class User (
     val id: Long = 0,
 
     @Column(nullable = false, unique = true)
-    val email: String,
+    var email: String,
 
-    val password: String,
-
-    @Column(nullable = false)
-    val name: String,
+    var password: String,
 
     @Column(nullable = false)
-    val isSns: Boolean = false,
+    var name: String,
 
-    val refresh_token: String,
-) : BaseEntity()
+    @Column(nullable = false)
+    var isSns: Boolean = false,
+
+    var refresh_token: String,
+) : BaseEntityAggregateRoot<User>() {
+
+}
 
 data class UserId(val id: Long)

@@ -1,6 +1,8 @@
 package com.hoon.avril.restaurant.domain
 
 import com.hoon.avril.common.domain.BaseEntity
+import com.hoon.avril.common.domain.BaseEntityAggregateRoot
+import com.hoon.avril.common.enums.RestaurantType
 import jakarta.persistence.*
 
 /**
@@ -21,8 +23,9 @@ class Restaurant (
 
     var phone: String,
 
-    // TODO 맛집 유형 코드단 Enum 관리? 필요
-    var type: String
-): BaseEntity()
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    var type: RestaurantType
+): BaseEntityAggregateRoot<Restaurant>()
 
 data class RestaurantId(val id: Long)

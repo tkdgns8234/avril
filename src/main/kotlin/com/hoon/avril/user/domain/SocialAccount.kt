@@ -1,6 +1,7 @@
 package com.hoon.avril.user.domain
 
 import com.hoon.avril.common.domain.BaseEntity
+import com.hoon.avril.common.enums.Provider
 import jakarta.persistence.*
 
 @Entity
@@ -20,7 +21,3 @@ class SocialAccount (
     @Column(nullable = false)
     val providerId: String
 ) : BaseEntity()
-
-enum class Provider {
-    GOOGLE, KAKAO, NAVER
-}
