@@ -1,4 +1,25 @@
 package com.hoon.avril.user.domain
 
-class SocialAccount {
+import com.hoon.avril.common.domain.BaseEntity
+import jakarta.persistence.*
+
+class SocialAccount (
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long = 0,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    val user: User,
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    val provider: Provider,
+
+    @Column(nullable = false)
+    val providerId: String
+) : BaseEntity()
+
+enum class Provider {
+    GOOGLE, KAKAO, NAVER
 }
