@@ -20,8 +20,7 @@ class Comment (
 
     var comment: String?,
 
-    @Embedded
-    var parentId: CommentId?,
-): BaseEntity()
-
-data class CommentId(val id: Long)
+    var parentId: Long?
+): BaseEntity() {
+    //TODO 댓글 남겼을 때 상위 댓글의 user 에게(본인이 아닌 경우) 알림 발송 로직 추가
+}

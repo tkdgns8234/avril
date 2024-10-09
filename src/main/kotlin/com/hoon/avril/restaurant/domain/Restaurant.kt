@@ -6,6 +6,7 @@ import jakarta.persistence.*
 
 /**
  * Aggregate Root
+ * TODO: onetoMany 참조 추가, 도메인 로직 추가
  * */
 @Entity
 class Restaurant (
@@ -24,4 +25,12 @@ class Restaurant (
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     var type: RestaurantType
-): BaseEntityAggregateRoot<Restaurant>()
+): BaseEntityAggregateRoot<Restaurant>() {
+    init {
+        isValid()
+    }
+
+    private fun isValid() {
+        if (name.isEmpty()) { throw IllegalArgumentException("Name cannot be empty") }
+    }
+}

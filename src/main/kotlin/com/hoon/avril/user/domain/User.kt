@@ -12,6 +12,9 @@ class User (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
+    @OneToMany(mappedBy = "user")
+    val socialAccount: MutableList<SocialAccount> = mutableListOf(),
+
     @Column(nullable = false, unique = true)
     var email: String,
 
@@ -24,15 +27,22 @@ class User (
     var isSns: Boolean = false,
 
     var refresh_token: String?,
+
 ) : BaseEntityAggregateRoot<User>() {
     init {
-        encryptUser()
+        isValid()
+        encryptData()
     }
 
-    private fun encryptUser() {
-        // TODO: 암호화 로직 추가
-        this.email = email
-        this.password = password
-        this.name = name
+    private fun isValid() {
+        // TODO: email, password, name 데이터 검증
+    }
+
+    private fun encryptData() {
+        // TODO: 데이터 암호화
+    }
+
+    private fun addSocialAccount(socialAccount: SocialAccount) {
+        this.socialAccount.add(socialAccount)
     }
 }

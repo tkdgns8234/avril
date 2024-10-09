@@ -21,4 +21,13 @@ class Menu (
 
     var image: ByteArray?,
 
-): BaseEntity()
+): BaseEntity() {
+    init {
+        isValid()
+    }
+
+    private fun isValid() {
+        if (name.isEmpty()) { throw IllegalArgumentException("Name cannot be empty") }
+        if (price < 0.0) { throw IllegalArgumentException("Price cannot be negative") }
+    }
+}

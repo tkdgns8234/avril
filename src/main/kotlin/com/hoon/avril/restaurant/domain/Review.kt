@@ -28,4 +28,12 @@ class Review  (
 
     var image: ByteArray?,
 
-): BaseEntity()
+): BaseEntity() {
+    init {
+        isValid()
+    }
+
+    private fun isValid() {
+        if (score <= 0.0 || score > 5.0) { throw IllegalArgumentException("Invalid score") }
+    }
+}
